@@ -1,0 +1,23 @@
+---
+ops: [analyze]
+model: {
+    path: /dssg/home/acct-bmelgn/bmelgn-3/FLAT/seimodel/sei.py,
+    class: Sei,
+    class_args: {},
+    non_strand_specific: mean
+}
+analyze_sequences: !obj:selene_sdk.predict.AnalyzeSequences {
+    trained_model_path: /dssg/home/acct-bmelgn/bmelgn-3/FLAT/seimodel/sei.pth, 
+    sequence_length: 4096,
+    features: !obj:selene_sdk.utils.load_features_list {
+        input_path: /dssg/home/acct-bmelgn/bmelgn-3/FLAT/seimodel/target.names 
+    },
+    batch_size: 64,
+    use_cuda: True,
+
+}
+prediction: {
+    output_format: hdf5
+}
+random_seed: 123
+...
